@@ -5,3 +5,8 @@ log.*
 *.swp
 *.py[cao]
 config.py
+*.out.*
+*.tmp.*
+*.log.*
+
+*.[0123456789]
