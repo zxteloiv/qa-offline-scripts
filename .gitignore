@@ -8,5 +8,7 @@ config.py
 *.out.*
 *.tmp.*
 *.log.*
+tmp.*
+bak.*
 
 *.[0123456789]
