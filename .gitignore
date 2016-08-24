@@ -10,6 +10,7 @@ config.py
 *.log.*
 tmp.*
 bak.*
+output
 
 *.[0123456789]
 tmp
