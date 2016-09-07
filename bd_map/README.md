@@ -5,3 +5,4 @@ Source files:
 - bd_detail_crawler.py: crawl the detail page of baidu poi
 - find_fallback.sh: find the failed crawling
 - bd_extract_further_link.py: extract links to other sources like dianping from every baidu detail page
+- bd_further_crawler.py: crawl html pages following the further 3rd-party links
