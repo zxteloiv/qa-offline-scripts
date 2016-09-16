@@ -26,7 +26,7 @@ def parse_result(result):
 
     # optional fields
     if u'detail_info' in result:
-        for key in (u'overall_rating', u'shop_hours', u'tag', u'comment_num'):
+        for key in (u'overall_rating', u'shop_hours', u'tag', u'comment_num', u'detail_url'):
             if key in result['detail_info']:
                 obj[key] = result['detail_info'][key]
 
@@ -35,7 +35,10 @@ def parse_result(result):
 def insert_file(filename):
     dbcol = get_mongo_col()
     for line in open(filename):
-        data = json.loads(line)
+        try:
+            data = json.loads(line.rstrip())
+        except:
+            print >> sys.stderr, line.rstrip()
 
         if data['status'] != 0:
             continue
