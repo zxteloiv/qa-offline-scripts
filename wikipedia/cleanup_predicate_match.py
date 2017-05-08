@@ -1,6 +1,6 @@
 # coding: utf-8
 
-import sys, re
+import sys, re, pymongo
 
 def cleanup(word):
     word = re.sub('\[\[.*\|(.*)\]\]', r'\1', word) # replace the link with the anchor text: [[something|anchor]] -> anchor
@@ -15,19 +15,22 @@ def cleanup_predicate_match(filename):
     for line in open(filename):
         parts = line.rstrip().split('\t')
         try:
-            src, dest, score = cleanup(parts[0]), cleanup(parts[1]), parts[2]
+            src, dest, score = cleanup(parts[0]), cleanup(parts[1]), int(parts[2])
         except:
             continue
 
-        print "\t".join((src, dest, score))
+        if not src or not dest: continue
+        yield (src, dest, score)
+
+def insert_mongo(triple, client):
+    t = {"src":triple[0], "dest":triple[1], "score":triple[2]}
+    client.poi_db.predicate_mapper.insert_one(t)
+
+def miao():
+    client = pymongo.MongoClient()
+    for t in cleanup_predicate_match(sys.argv[1]):
+        insert_mongo(t, client)
 
 if __name__ == "__main__":
-    cleanup_predicate_match(sys.argv[1])
-
-
-
-
-
-
-
+    miao()
 
