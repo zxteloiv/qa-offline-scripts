@@ -53,21 +53,14 @@ def main():
 def print_qlabel_kv(example, t):
     if 'lq' not in example or not example['lq']: return
     for k, v in example['lq']:
-        print t, k.encode('utf-8'), v.encode('utf-8')
+        print '\t'.join((t, k.encode('utf-8'), v.encode('utf-8')))
 
-def print_qlabel_values(example, t):
+def print_qlabel_values_per_example(example, t):
     if 'lq' not in example or not example['lq']: return
     value = u','.join(v for k, v in example['lq'] if k not in (u'实体', u'地点'))
     print t, value.encode('utf-8')
 
-def debug_qlabel_keys(example, t):
-    if 'lq' not in example or not example['lq']: return
-
-    keys, vals = zip(*example['lq'])
-    if any(u'[' in k for k in keys):
-        print json.dumps(example)
-
-def print_qlabel_keys(example, t):
+def print_qlabel_keys_per_example(example, t):
     if 'lq' not in example or not example['lq']: return
     keys, vals = zip(*example['lq'])
     print t, u','.join(sorted(set(keys))).encode('utf-8')

@@ -11,6 +11,7 @@ config.py
 tmp.*
 bak.*
 output
+*.stat
 
 *.[0123456789]
 tmp
