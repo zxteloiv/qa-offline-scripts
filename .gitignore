@@ -12,6 +12,7 @@ tmp.*
 bak.*
 output
 *.stat
+out.*
 
 *.[0123456789]
 tmp
