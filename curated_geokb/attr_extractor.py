@@ -83,10 +83,10 @@ def get_question_printer_by_keys_per_example():
     def printer(example, t):
         if 'lq' not in example or not example['lq']: return
         keys, vals = zip(*example['lq'])
-        keys = u','.join(sorted(set(keys)))
+        keys = (t, u','.join(sorted(set(keys))))
         if keys not in questions:
             questions[keys] = example['q']
-            print t + '\t' + keys.encode('utf-8') + '\t' + example['q'].encode('utf-8')
+            print t + '\t' + keys[1].encode('utf-8') + '\t' + example['q'].encode('utf-8')
     return printer
 
 if __name__ == "__main__":
