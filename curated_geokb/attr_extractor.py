@@ -3,7 +3,7 @@
 import re, sys, os.path
 import json
 
-def codec(fobj, encoding='utf-8'):
+def codec(fobj, encoding='utf-8-sig'):
     for l in fobj:
         yield l.decode(encoding)
 
