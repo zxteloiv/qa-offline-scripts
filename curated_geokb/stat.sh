@@ -20,6 +20,10 @@ cat ../out.tmp | sort | uniq -c | sort -k2,2 -k1,1gr > ../out.domain-value.per-q
 python attr_extractor.py ../filelist.tmp "skpe"  > ../out.tmp
 cat ../out.tmp | sort -k1,1 > ../out.domain-prop.per-q.question
 
+# merge sample question and keys
+
+awk '(FNR == NR) {arr[$2$3] = $1; next;} {no=arr[$1$2]; print no"\t"$0}' ../out.domain-prop.per-q.stat ../out.domain-prop.per-q.question | sort -k2,2 -k1,1gr > ../out.domain-prop.per-q.stat-and-sample-sorted
+
 
 rm ../out.tmp
 
