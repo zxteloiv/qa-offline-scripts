@@ -21,7 +21,7 @@ def insert_file(filename, dbname, colname):
             print >> sys.stderr, line.rstrip()
 
         objid = dbcol.insert(data)
-        print datetime.datetime.now(), i, data[u'ID'], objid
+        print datetime.datetime.now(), i, objid #, data[u'ID']
         sys.stdout.flush()
 
 if __name__ == "__main__":
